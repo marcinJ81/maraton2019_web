@@ -1,0 +1,140 @@
+﻿@model List<Abstract_And_Model_Layer.Marthon_Office_Model.vListParticipantsInOfficeRegisterCondition>
+@{
+    ViewBag.Title = "ListOfRegistering";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+
+<div class="container-fluid">
+    <h3>Zarejestrowani użytkownicy</h3>
+    <div class="jumbotron-fluid">
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-md-2">
+                   @Html.ActionLink("Dodaj nowego zawodnika", "AddPArticipant", "RegistrationParticipant", null, new { @class = "btn btn-success" })
+               </div>
+       </div>
+           <br />
+     </div>
+        @using (Html.BeginForm("ListOfRegistering", "RegistrationParticipant", FormMethod.Get))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        @Html.TextBox("surname", null, htmlAttributes: new { placeholder = "np. Nazwisko ", @class = "form-control" })
+                    </div>
+                    <div class="col-md-3">
+                        
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Szukaj" class="btn btn-info " />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+
+                    </div>
+                </div>
+            </div>
+        }
+        <br />
+        <table class="table table-striped">
+            <tr>
+                <th >
+                   kart_id 
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Imie
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Data urodzenia
+                </th>
+                <th>
+                    Dystans
+                </th>
+                <th>
+                    Numer startowy
+                </th>
+                <th>
+                    Lista
+                </th>
+                <th>
+                    Rezerwa
+                </th>
+                <th>
+                    Opłata
+                </th>
+                <th>
+                    Czas 
+                </th>
+                <th>
+                   Odbicia
+                </th>
+                <th>
+                    Przejechał
+                </th>
+                <th>
+                    Wybierz
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_id) 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_dataUr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dys_wartosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tag_LabelNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.list_nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_wpis_rezerwowa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_wpis_oplata)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.suma_czas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.iloscOdbic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.realDistance)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Szczegóły", "ParticipantRegister", "RegistrationParticipant", new { kart_id = item.kart_id }, new { @class = "btn  btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Certyfikat", "CertificateForParticipant", "RegistrationParticipant", new {name = item.kart_imie, sname = item.kart_nazwisko, email = item.kart_email }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

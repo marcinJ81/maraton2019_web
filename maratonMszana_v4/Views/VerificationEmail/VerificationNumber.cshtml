@@ -1,0 +1,135 @@
+﻿@model Abstract_And_Model_Layer.Registration_Participant_Model.kartoteka2
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+<style>
+    .odstep {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .rozmiar {
+        font-size: 16px;
+    }
+
+    .obramowanie_gora {
+        padding-top: 10px;
+        border-top: solid;
+        border-color: white;
+    }
+
+    .obramowanie_dol {
+        padding-bottom: 10px;
+        border-bottom: solid;
+        border-color: white;
+    }
+
+    .obramowanie_lewo {
+        padding-left: 10px;
+        border-left: solid;
+        border-color: white;
+    }
+
+    .obramowanie_prawo {
+        padding-right: 10px;
+        border-right: solid;
+        border-color: white;
+    }
+     .obramowanie_warning {
+        padding-top: 10px;
+        padding-bottom:10px;
+        padding-left:10px;
+        padding-right:10px;
+        border-top: solid;
+        border-right: solid;
+        border-left: solid;
+        border-bottom: solid;
+        border-color: red;
+    }
+</style>
+<div style="margin-left:10%;">
+    <h3> X Śląski Maraton Rowerowy Mszana 2019 - Weryfikacja numeru, zakończenie rejestracji</h3>
+
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+
+        <p>
+            Na podany podczas rejestracji adres mejlowy zostanie wyslana wiadomość z numerem.
+            Należy wpisać ten numer w odpowiednie pole, po poprawnej weryfikacji zostanie wysłany mejl powitalny.
+            Czas na podanie numeru to 10 minut.Jeżeli wiadomość nie jest widoczna na poczcie, proszę  sprawdzić 
+            folder spam lub pobrać wiadomości w swojej poczcie jeszcze raz.
+            <br />
+            W wiadomości powitalnej  będą szczegółowe dane na temat daty i godziny startu, wybrany dystans oraz opłata.
+            Numer konta na stronie historycznej maratonu <a href="http://maraton24.hw7.pl/glowna/Oplaty" target="_blank">Stara wersja</a>.
+        </p>
+
+        @using (Html.BeginForm())
+        {    @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div id="kartoteka" style="visibility: hidden">
+                @if (Model != null)
+                {
+                    <table>
+                        <tr>
+                            <td>@Html.TextBox("kart_imie", @Model.kart_imie)</td>
+                            <td>@Html.TextBox("kart_nazwisko", @Model.kart_nazwisko)</td>
+                            <td>@Html.TextBox("kart_email", @Model.kart_email)</td>
+                            <td>@Html.TextBox("kart_telefon", @Model.kart_telefon)</td>
+                            <td>@Html.TextBox("kart_uwagi", @Model.kart_uwagi)</td>
+                            <td>@Html.TextBox("kart_dataUr", @Model.kart_dataUr)</td>
+                            <td>@Html.TextBox("plec_id", @Model.plec_id)</td>
+                            <td>@Html.TextBox("dys_id", @Model.dys_id)</td>
+                            <td>@Html.TextBox("grup_id", @Model.grup_id)</td>
+                        </tr>
+                    </table>
+
+                }
+            </div>
+            <div class="container">
+                <div class="row obramowanie_gora obramowanie_lewo obramowanie_prawo">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBox("kart_imie", (string)ViewBag.imie, htmlAttributes: new { @readonly = "readonly", Title = "Imię zawodnika", @class = "form-control " })
+                    </div>
+                    <div class="col-md-3">
+                        @Html.TextBox("kart_nazwisko", (string)ViewBag.nazwisko, htmlAttributes: new { @readonly = "readonly", Title = "Podaj numer", @class = "form-control " })
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBox("kart_email", (string)ViewBag.email, htmlAttributes: new { @readonly = "readonly", Title = "Podaj numer", @class = "form-control " })
+                    </div>
+                </div>
+                <div class="row obramowanie_lewo obramowanie_prawo">
+                    <br />
+                </div>
+                <div class="row  obramowanie_dol obramowanie_prawo obramowanie_lewo">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-5">
+                        Podaj Numer wysłany poprzez email
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBox("_number", null, htmlAttributes: new { Title = "Podaj numer", @class = "form-control rozmiar" })
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Weryfikuj" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+        }
+        <br />
+        @if ((bool?)ViewBag.visibleTrue == true)
+        {
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-8 obramowanie_warning">
+                   <div class="text-hide">@Html.TextBox("visibleTrue", (bool?)ViewBag.visibleTrue)</div>
+                    @Html.TextBox("errorMessage",(string)ViewBag.errorMessage, htmlAttributes: new { @readonly = "readonly", @class = "form-control " })
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MaratonMszanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administratorzy">
+          <Key>
+            <PropertyRef Name="reg_id" />
+          </Key>
+          <Property Name="reg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="reg_imie" Type="varchar" MaxLength="50" />
+          <Property Name="reg_nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="reg_login" Type="varchar" MaxLength="50" />
+          <Property Name="reg_password" Type="varchar(max)" />
+          <Property Name="reg_aktywne" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="MaratonMszanaModelStoreContainer">
+          <EntitySet Name="Administratorzy" EntityType="Self.Administratorzy" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaratonMszanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RegisterEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Administratorzy" EntityType="MaratonMszanaModel.Administratorzy" />
+        </EntityContainer>
+        <EntityType Name="Administratorzy">
+          <Key>
+            <PropertyRef Name="reg_id" />
+          </Key>
+          <Property Name="reg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="reg_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reg_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reg_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reg_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reg_aktywne" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaratonMszanaModelStoreContainer" CdmEntityContainer="RegisterEntities" >
+          <EntitySetMapping Name="Administratorzy">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.Administratorzy">
+              <MappingFragment StoreEntitySet="Administratorzy">
+                <ScalarProperty Name="reg_aktywne" ColumnName="reg_aktywne" />
+                <ScalarProperty Name="reg_password" ColumnName="reg_password" />
+                <ScalarProperty Name="reg_login" ColumnName="reg_login" />
+                <ScalarProperty Name="reg_nazwisko" ColumnName="reg_nazwisko" />
+                <ScalarProperty Name="reg_imie" ColumnName="reg_imie" />
+                <ScalarProperty Name="reg_id" ColumnName="reg_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

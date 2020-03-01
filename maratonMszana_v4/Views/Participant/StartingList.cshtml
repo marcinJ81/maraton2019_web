@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Abstract_And_Model_Layer.Time_Tag_Participant.VStartingLists>
+
+@{
+    ViewBag.Title = "StartingList";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+
+<div class="container">
+    <h3>Grupy startowe</h3>
+    <div class="jumbotron">
+
+        @using (Html.BeginForm("StartingList", "Participant", FormMethod.Get))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        @Html.TextBox("nazwisko", null, htmlAttributes: new { placeholder = "podaj nazwisko  ", @class = "form-control" })
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Szukaj" class="btn btn-info " />
+                    </div>
+                </div>
+            </div>
+        }
+        <br />
+        <table class="table table-striped">
+            <tr>
+                <th>
+                   Id
+                </th>
+                <th>
+                    Nazwa grupy
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Numer startowy
+                </th>
+                <th>
+                   Dystans
+                </th>
+                <th>
+                    
+                </th>
+               
+               
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.list_nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kart_imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tag_LabelNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dys_wartosc)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+

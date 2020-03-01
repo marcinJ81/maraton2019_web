@@ -1,0 +1,253 @@
+﻿@model Abstract_And_Model_Layer.Registration_Participant_Model.kartoteka2
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+<link href="~/Content/register.css" rel="stylesheet" />
+<style>
+    .field-validation-error {
+        color: #ff0000;
+        display: block;
+    }
+
+    .odstep {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .rozmiar {
+        font-size: 16px;
+    }
+
+    .obramowanie {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-top: solid;
+        border-bottom: solid;
+        border-color: white;
+    }
+
+    .zaznaczenie {
+        width: 30px;
+        padding: 10px;
+    }
+</style>
+
+
+
+<script>
+    
+    function getValue_grupa() {
+        var x = document.getElementById("grupa_id");
+        if (document.getElementById("grupa_id").selectedIndex > 0) {
+            var i = x.options[x.selectedIndex].value;
+            return i;
+        }
+    }
+   
+    $(document).ready(function () {
+        $("#btnDodajGr").click(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: "GET",
+                url: "/Registration/AddGroup",
+                contentType: "html",
+                success: function (response) {
+                    // debugger
+                    $("#nowaGrupa").empty();
+                    $("#nowaGrupa").append(response);
+                },
+                error: function (ex) {
+                    alert('Blad skryptu' + ex);
+                }
+            })
+        })
+    });
+
+  
+    
+    //(function ($) {
+      //  $.validator.unobtrusive.adapters.addBool("booleanrequired", "required");
+    //}(jQuery));
+</script>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker({
+                    format: 'yyyy-mm-dd',
+                    minView: 2,
+                    language: 'pl'
+                });
+            });
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<div class="container" >
+    <h3>X Śląski Maraton Rowerowy Mszana 2019 - Rejestracja zawodników </h3>
+   
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+  
+    <div class="container">
+        <div class="jumbotron">
+
+            <p>
+               Dystans oraz Płeć również wymagana.
+            </p>
+
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Grupa Kolarska
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("grup_id", (MultiSelectList)ViewBag.grupa_id, htmlAttributes: new { @class = " form-control pole_1" })
+                </div>
+                <div class="col-md-2">
+                    <input id="btnDodajGr" type="submit" value="Dodaj nową grupę" class="btn btn-info" />
+                </div>
+                <div class="col-md-2">
+                    @Html.ValidationMessageFor(model => model.grup_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="nowaGrupa">
+
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Imię
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_imie", null, htmlAttributes: new { placeholder = "Podaj imię", @class = "form-control pole_1" })
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_imie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Nazwisko
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_nazwisko", null, htmlAttributes: new { placeholder = "Podaj nazwisko", @class = "form-control pole_1" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_nazwisko, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Płeć
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("plec_id", (MultiSelectList)ViewBag.plec_id, htmlAttributes: new { @class = " form-control pole_1" })
+                    
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.plec_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    <p> Data urodzenia 
+                    rrrr-mm-dd</p>
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(model => model.kart_dataUr, new { placeholder = "format rrrr-mm-dd", @class = "form-control" })
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_dataUr, "", new {  @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Email
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_email", null, htmlAttributes: new { placeholder = "Podaj email", @class = "form-control pole_1" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Nr telefon
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_telefon", null, htmlAttributes: new { placeholder = "Podaj numer telefonu", @class = "form-control pole_1" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_telefon, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Dystans
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("dys_id", (MultiSelectList)ViewBag.dys_id, htmlAttributes: new { @class = " form-control pole_1" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.dys_id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Uwagi
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_uwagi", null, htmlAttributes: new { placeholder = "Uwagi", @class = "form-control pole_1" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_uwagi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row ">
+                <div class="col-md-3 obramowanie_dol obramowanie_gora obramowanie_lewo">
+                    <a href="~/regulamin/Regulamin2019.pdf" target="_blank">Akceptuj Regulamin Maratonu</a>
+                </div>
+                <div class="col-md-1 obramowanie_dol obramowanie_gora  obramowanie_prawo">
+                    @Html.CheckBox("kart_wpis_rejestacja", false, htmlAttributes: new { @class = "zaznaczenie form-control" })
+                   
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_wpis_rejestacja, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+          
+                 <div class="row odstep">
+                     <div class="col-md-2">
+                         Weryfikacja email
+                     </div>
+                     <div class="col-md-2">
+                         <input id="btnVerificationRegister" type="submit" value="Rejestracja" class="btn btn-info" />
+                     </div>
+                </div>
+             
+          
+            <div class="row odstep">
+                <div class="col-md-3">
+                    @ViewBag.Warning
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+

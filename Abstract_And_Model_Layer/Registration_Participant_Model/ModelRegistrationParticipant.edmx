@@ -1,0 +1,709 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MaratonMszanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dystans">
+          <Key>
+            <PropertyRef Name="dys_id" />
+          </Key>
+          <Property Name="dys_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dys_wartosc" Type="varchar" MaxLength="50" />
+          <Property Name="dys_aktywny" Type="bit" />
+          <Property Name="info_id" Type="int" />
+        </EntityType>
+        <EntityType Name="dystans_info">
+          <Key>
+            <PropertyRef Name="info_id" />
+          </Key>
+          <Property Name="info_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="info_start_time" Type="varchar" MaxLength="50" />
+          <Property Name="info_start_date" Type="varchar" MaxLength="50" />
+          <Property Name="info_oplata" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Exception_Table">
+          <Key>
+            <PropertyRef Name="er_id" />
+          </Key>
+          <Property Name="er_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="er_name" Type="varchar" MaxLength="50" />
+          <Property Name="er_description" Type="varchar" MaxLength="300" />
+          <Property Name="er_Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="grupa_kolarska">
+          <Key>
+            <PropertyRef Name="grupa_id" />
+          </Key>
+          <Property Name="grupa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="grupa_nazwa" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kartoteka_2018">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="int" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" />
+          <Property Name="kart_imie2" Type="varchar" MaxLength="50" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="kart_email" Type="varchar" MaxLength="50" />
+          <Property Name="kart_telefon" Type="varchar" MaxLength="10" />
+          <Property Name="kart_miejscowosc" Type="varchar" MaxLength="50" />
+          <Property Name="kart_ulica" Type="varchar" MaxLength="50" />
+          <Property Name="kart_nrDM" Type="varchar" MaxLength="10" />
+          <Property Name="kart_kodPocz" Type="varchar" MaxLength="10" />
+          <Property Name="kart_aktywny" Type="bit" />
+          <Property Name="zaw_id" Type="int" />
+          <Property Name="kart_pesel" Type="varchar" MaxLength="100" />
+          <Property Name="kart_zgoda1" Type="bit" />
+          <Property Name="kart_zgoda2" Type="bit" />
+          <Property Name="kart_zgoda3" Type="bit" />
+          <Property Name="kart_uwagi" Type="varchar" MaxLength="255" />
+          <Property Name="dys_id" Type="int" />
+          <Property Name="plec_id" Type="int" />
+          <Property Name="kart_wiek" Type="int" />
+          <Property Name="kart_kod1" Type="int" />
+          <Property Name="kart_kod2" Type="int" />
+          <Property Name="kart_data" Type="date" />
+          <Property Name="kart_dataCzas" Type="datetime" />
+        </EntityType>
+        <EntityType Name="kartoteka_TMP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="dataRej" Type="datetime" />
+          <Property Name="limitCzasu" Type="int" />
+          <Property Name="dataKoncowa" Type="datetime" />
+          <Property Name="rejestracja" Type="int" />
+        </EntityType>
+        <EntityType Name="kartoteka2">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_telefon" Type="varchar" MaxLength="50" />
+          <Property Name="kart_uwagi" Type="varchar" MaxLength="100" />
+          <Property Name="plec_id" Type="int" />
+          <Property Name="dys_id" Type="int" />
+          <Property Name="grup_id" Type="int" />
+          <Property Name="kart_dataUr" Type="date" />
+          <Property Name="kart_dataRej" Type="datetime" />
+          <Property Name="kart_wpis_rejestacja" Type="bit" />
+          <Property Name="kart_wpis_oplata" Type="bit" />
+          <Property Name="kart_wpis_rezerwowa" Type="bit" />
+        </EntityType>
+        <EntityType Name="Plec">
+          <Key>
+            <PropertyRef Name="plec_id" />
+          </Key>
+          <Property Name="plec_id" Type="int" Nullable="false" />
+          <Property Name="plec_opis" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '1208_MaratonMszana.dbo.modelExt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="modelExt">
+          <Key>
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="C1" />
+            <PropertyRef Name="C2" />
+          </Key>
+          <Property Name="dys_id" Type="int" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dys_wartosc" Type="varchar" MaxLength="50" />
+          <Property Name="grupa_nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="kart_wpis_rejestacja" Type="bit" />
+          <Property Name="C1" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="C2" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '1208_MaratonMszana.dbo.VmodelExt' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VmodelExt">
+          <Key>
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="C1" />
+            <PropertyRef Name="C2" />
+          </Key>
+          <Property Name="dys_id" Type="int" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dys_wartosc" Type="varchar" MaxLength="50" />
+          <Property Name="grupa_nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="kart_wpis_rejestacja" Type="bit" />
+          <Property Name="C1" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="C2" Type="nvarchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '1208_MaratonMszana.dbo.VOneColumn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VOneColumn">
+          <Key>
+            <PropertyRef Name="imie" />
+            <PropertyRef Name="nazwisko" />
+          </Key>
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dane" Type="nvarchar" MaxLength="228" />
+        </EntityType>
+        <Association Name="FK_Dystans_dystans_info">
+          <End Role="dystans_info" Type="Self.dystans_info" Multiplicity="0..1" />
+          <End Role="Dystans" Type="Self.Dystans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dystans_info">
+              <PropertyRef Name="info_id" />
+            </Principal>
+            <Dependent Role="Dystans">
+              <PropertyRef Name="info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_Dystans">
+          <End Role="Dystans" Type="Self.Dystans" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dystans">
+              <PropertyRef Name="dys_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="dys_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_grupa_kolarska">
+          <End Role="grupa_kolarska" Type="Self.grupa_kolarska" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupa_kolarska">
+              <PropertyRef Name="grupa_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="grup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_Plec">
+          <End Role="Plec" Type="Self.Plec" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plec">
+              <PropertyRef Name="plec_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="plec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="pDodajGrupa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="grupa" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pKartotekaZawodnikaDodaj" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="imie" Type="varchar" Mode="In" />
+          <Parameter Name="nazwisko" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="dataU" Type="date" Mode="In" />
+          <Parameter Name="plec_id" Type="int" Mode="In" />
+          <Parameter Name="fafon" Type="varchar" Mode="In" />
+          <Parameter Name="uwagi" Type="varchar" Mode="In" />
+          <Parameter Name="dys_id" Type="int" Mode="In" />
+          <Parameter Name="grupa_id" Type="int" Mode="In" />
+          <Parameter Name="rejestrcja" Type="bit" Mode="In" />
+          <Parameter Name="rezerwa" Type="bit" Mode="In" />
+        </Function>
+        <EntityContainer Name="MaratonMszanaModelStoreContainer">
+          <EntitySet Name="Dystans" EntityType="Self.Dystans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dystans_info" EntityType="Self.dystans_info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exception_Table" EntityType="Self.Exception_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grupa_kolarska" EntityType="Self.grupa_kolarska" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kartoteka_2018" EntityType="Self.kartoteka_2018" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kartoteka_TMP" EntityType="Self.kartoteka_TMP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kartoteka2" EntityType="Self.kartoteka2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plec" EntityType="Self.Plec" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="modelExt" EntityType="Self.modelExt" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [modelExt].[dys_id] AS [dys_id], 
+    [modelExt].[kart_imie] AS [kart_imie], 
+    [modelExt].[kart_nazwisko] AS [kart_nazwisko], 
+    [modelExt].[dys_wartosc] AS [dys_wartosc], 
+    [modelExt].[grupa_nazwa] AS [grupa_nazwa], 
+    [modelExt].[kart_wpis_rejestacja] AS [kart_wpis_rejestacja], 
+    [modelExt].[C1] AS [C1], 
+    [modelExt].[C2] AS [C2]
+    FROM [dbo].[modelExt] AS [modelExt]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VmodelExt" EntityType="Self.VmodelExt" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VmodelExt].[dys_id] AS [dys_id], 
+    [VmodelExt].[kart_imie] AS [kart_imie], 
+    [VmodelExt].[kart_nazwisko] AS [kart_nazwisko], 
+    [VmodelExt].[dys_wartosc] AS [dys_wartosc], 
+    [VmodelExt].[grupa_nazwa] AS [grupa_nazwa], 
+    [VmodelExt].[kart_wpis_rejestacja] AS [kart_wpis_rejestacja], 
+    [VmodelExt].[C1] AS [C1], 
+    [VmodelExt].[C2] AS [C2]
+    FROM [dbo].[VmodelExt] AS [VmodelExt]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VOneColumn" EntityType="Self.VOneColumn" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VOneColumn].[imie] AS [imie], 
+    [VOneColumn].[nazwisko] AS [nazwisko], 
+    [VOneColumn].[dane] AS [dane]
+    FROM [dbo].[VOneColumn] AS [VOneColumn]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Dystans_dystans_info" Association="Self.FK_Dystans_dystans_info">
+            <End Role="dystans_info" EntitySet="dystans_info" />
+            <End Role="Dystans" EntitySet="Dystans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_Dystans" Association="Self.FK_kartoteka2_Dystans">
+            <End Role="Dystans" EntitySet="Dystans" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_grupa_kolarska" Association="Self.FK_kartoteka2_grupa_kolarska">
+            <End Role="grupa_kolarska" EntitySet="grupa_kolarska" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_Plec" Association="Self.FK_kartoteka2_Plec">
+            <End Role="Plec" EntitySet="Plec" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaratonMszanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dystans">
+          <Key>
+            <PropertyRef Name="dys_id" />
+          </Key>
+          <Property Name="dys_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dys_wartosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dys_aktywny" Type="Boolean" />
+          <Property Name="info_id" Type="Int32" />
+          <NavigationProperty Name="dystans_info" Relationship="Self.FK_Dystans_dystans_info" FromRole="Dystans" ToRole="dystans_info" />
+          <NavigationProperty Name="kartoteka2" Relationship="Self.FK_kartoteka2_Dystans" FromRole="Dystans" ToRole="kartoteka2" />
+        </EntityType>
+        <EntityType Name="dystans_info">
+          <Key>
+            <PropertyRef Name="info_id" />
+          </Key>
+          <Property Name="info_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="info_start_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="info_start_date" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="info_oplata" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Dystans" Relationship="Self.FK_Dystans_dystans_info" FromRole="dystans_info" ToRole="Dystans" />
+        </EntityType>
+        <EntityType Name="Exception_Table">
+          <Key>
+            <PropertyRef Name="er_id" />
+          </Key>
+          <Property Name="er_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="er_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="er_description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="er_Date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="grupa_kolarska">
+          <Key>
+            <PropertyRef Name="grupa_id" />
+          </Key>
+          <Property Name="grupa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="grupa_nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kartoteka2" Relationship="Self.FK_kartoteka2_grupa_kolarska" FromRole="grupa_kolarska" ToRole="kartoteka2" />
+        </EntityType>
+        <EntityType Name="kartoteka_2018">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_imie2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_telefon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kart_miejscowosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_ulica" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_nrDM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kart_kodPocz" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="kart_aktywny" Type="Boolean" />
+          <Property Name="zaw_id" Type="Int32" />
+          <Property Name="kart_pesel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="kart_zgoda1" Type="Boolean" />
+          <Property Name="kart_zgoda2" Type="Boolean" />
+          <Property Name="kart_zgoda3" Type="Boolean" />
+          <Property Name="kart_uwagi" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dys_id" Type="Int32" />
+          <Property Name="plec_id" Type="Int32" />
+          <Property Name="kart_wiek" Type="Int32" />
+          <Property Name="kart_kod1" Type="Int32" />
+          <Property Name="kart_kod2" Type="Int32" />
+          <Property Name="kart_data" Type="DateTime" Precision="0" />
+          <Property Name="kart_dataCzas" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="kartoteka_TMP">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dataRej" Type="DateTime" Precision="3" />
+          <Property Name="limitCzasu" Type="Int32" />
+          <Property Name="dataKoncowa" Type="DateTime" Precision="3" />
+          <Property Name="rejestracja" Type="Int32" />
+        </EntityType>
+        <EntityType Name="kartoteka2">
+          <Key>
+            <PropertyRef Name="kart_id" />
+          </Key>
+          <Property Name="kart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kart_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kart_email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kart_telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_uwagi" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plec_id" Type="Int32" />
+          <Property Name="dys_id" Type="Int32" />
+          <Property Name="grup_id" Type="Int32" />
+          <Property Name="kart_dataUr" Type="DateTime" Precision="0" />
+          <Property Name="kart_dataRej" Type="DateTime" Precision="3" />
+          <Property Name="kart_wpis_rejestacja" Type="Boolean" />
+          <Property Name="kart_wpis_oplata" Type="Boolean" />
+          <Property Name="kart_wpis_rezerwowa" Type="Boolean" />
+          <NavigationProperty Name="Dystans" Relationship="Self.FK_kartoteka2_Dystans" FromRole="kartoteka2" ToRole="Dystans" />
+          <NavigationProperty Name="grupa_kolarska" Relationship="Self.FK_kartoteka2_grupa_kolarska" FromRole="kartoteka2" ToRole="grupa_kolarska" />
+          <NavigationProperty Name="Plec" Relationship="Self.FK_kartoteka2_Plec" FromRole="kartoteka2" ToRole="Plec" />
+        </EntityType>
+        <EntityType Name="Plec">
+          <Key>
+            <PropertyRef Name="plec_id" />
+          </Key>
+          <Property Name="plec_id" Type="Int32" Nullable="false" />
+          <Property Name="plec_opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="kartoteka2" Relationship="Self.FK_kartoteka2_Plec" FromRole="Plec" ToRole="kartoteka2" />
+        </EntityType>
+        <EntityType Name="modelExt">
+          <Key>
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="C1" />
+            <PropertyRef Name="C2" />
+          </Key>
+          <Property Name="dys_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dys_wartosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grupa_nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_wpis_rejestacja" Type="Boolean" />
+          <Property Name="C1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C2" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VmodelExt">
+          <Key>
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="C1" />
+            <PropertyRef Name="C2" />
+          </Key>
+          <Property Name="dys_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dys_wartosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grupa_nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_wpis_rejestacja" Type="Boolean" />
+          <Property Name="C1" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="C2" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VOneColumn">
+          <Key>
+            <PropertyRef Name="imie" />
+            <PropertyRef Name="nazwisko" />
+          </Key>
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dane" Type="String" MaxLength="228" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Dystans_dystans_info">
+          <End Role="dystans_info" Type="Self.dystans_info" Multiplicity="0..1" />
+          <End Role="Dystans" Type="Self.Dystans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dystans_info">
+              <PropertyRef Name="info_id" />
+            </Principal>
+            <Dependent Role="Dystans">
+              <PropertyRef Name="info_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_Dystans">
+          <End Role="Dystans" Type="Self.Dystans" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dystans">
+              <PropertyRef Name="dys_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="dys_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_grupa_kolarska">
+          <End Role="grupa_kolarska" Type="Self.grupa_kolarska" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupa_kolarska">
+              <PropertyRef Name="grupa_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="grup_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_kartoteka2_Plec">
+          <End Role="Plec" Type="Self.Plec" Multiplicity="0..1" />
+          <End Role="kartoteka2" Type="Self.kartoteka2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plec">
+              <PropertyRef Name="plec_id" />
+            </Principal>
+            <Dependent Role="kartoteka2">
+              <PropertyRef Name="plec_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesRegistrationParticipant" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dystans" EntityType="Self.Dystans" />
+          <EntitySet Name="dystans_info" EntityType="Self.dystans_info" />
+          <EntitySet Name="Exception_Table" EntityType="Self.Exception_Table" />
+          <EntitySet Name="grupa_kolarska" EntityType="Self.grupa_kolarska" />
+          <EntitySet Name="kartoteka_2018" EntityType="Self.kartoteka_2018" />
+          <EntitySet Name="kartoteka_TMP" EntityType="Self.kartoteka_TMP" />
+          <EntitySet Name="kartoteka2" EntityType="Self.kartoteka2" />
+          <EntitySet Name="Plec" EntityType="Self.Plec" />
+          <EntitySet Name="modelExt" EntityType="Self.modelExt" />
+          <EntitySet Name="VmodelExt" EntityType="Self.VmodelExt" />
+          <EntitySet Name="VOneColumn" EntityType="Self.VOneColumn" />
+          <AssociationSet Name="FK_Dystans_dystans_info" Association="Self.FK_Dystans_dystans_info">
+            <End Role="dystans_info" EntitySet="dystans_info" />
+            <End Role="Dystans" EntitySet="Dystans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_Dystans" Association="Self.FK_kartoteka2_Dystans">
+            <End Role="Dystans" EntitySet="Dystans" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_grupa_kolarska" Association="Self.FK_kartoteka2_grupa_kolarska">
+            <End Role="grupa_kolarska" EntitySet="grupa_kolarska" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+          <AssociationSet Name="FK_kartoteka2_Plec" Association="Self.FK_kartoteka2_Plec">
+            <End Role="Plec" EntitySet="Plec" />
+            <End Role="kartoteka2" EntitySet="kartoteka2" />
+          </AssociationSet>
+          <FunctionImport Name="pKartotekaZawodnikaDodaj">
+            <Parameter Name="imie" Mode="In" Type="String" />
+            <Parameter Name="nazwisko" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="dataU" Mode="In" Type="DateTime" />
+            <Parameter Name="plec_id" Mode="In" Type="Int32" />
+            <Parameter Name="fafon" Mode="In" Type="String" />
+            <Parameter Name="uwagi" Mode="In" Type="String" />
+            <Parameter Name="dys_id" Mode="In" Type="Int32" />
+            <Parameter Name="grupa_id" Mode="In" Type="Int32" />
+            <Parameter Name="rejestrcja" Mode="In" Type="Boolean" />
+            <Parameter Name="rezerwa" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="pDodajGrupa">
+            <Parameter Name="grupa" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaratonMszanaModelStoreContainer" CdmEntityContainer="EntitiesRegistrationParticipant">
+          <EntitySetMapping Name="Dystans">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.Dystans">
+              <MappingFragment StoreEntitySet="Dystans">
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="dys_wartosc" ColumnName="dys_wartosc" />
+                <ScalarProperty Name="dys_aktywny" ColumnName="dys_aktywny" />
+                <ScalarProperty Name="info_id" ColumnName="info_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dystans_info">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.dystans_info">
+              <MappingFragment StoreEntitySet="dystans_info">
+                <ScalarProperty Name="info_id" ColumnName="info_id" />
+                <ScalarProperty Name="info_start_time" ColumnName="info_start_time" />
+                <ScalarProperty Name="info_start_date" ColumnName="info_start_date" />
+                <ScalarProperty Name="info_oplata" ColumnName="info_oplata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exception_Table">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.Exception_Table">
+              <MappingFragment StoreEntitySet="Exception_Table">
+                <ScalarProperty Name="er_id" ColumnName="er_id" />
+                <ScalarProperty Name="er_name" ColumnName="er_name" />
+                <ScalarProperty Name="er_description" ColumnName="er_description" />
+                <ScalarProperty Name="er_Date" ColumnName="er_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupa_kolarska">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.grupa_kolarska">
+              <MappingFragment StoreEntitySet="grupa_kolarska">
+                <ScalarProperty Name="grupa_id" ColumnName="grupa_id" />
+                <ScalarProperty Name="grupa_nazwa" ColumnName="grupa_nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kartoteka_2018">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.kartoteka_2018">
+              <MappingFragment StoreEntitySet="kartoteka_2018">
+                <ScalarProperty Name="kart_id" ColumnName="kart_id" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="kart_imie2" ColumnName="kart_imie2" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="kart_email" ColumnName="kart_email" />
+                <ScalarProperty Name="kart_telefon" ColumnName="kart_telefon" />
+                <ScalarProperty Name="kart_miejscowosc" ColumnName="kart_miejscowosc" />
+                <ScalarProperty Name="kart_ulica" ColumnName="kart_ulica" />
+                <ScalarProperty Name="kart_nrDM" ColumnName="kart_nrDM" />
+                <ScalarProperty Name="kart_kodPocz" ColumnName="kart_kodPocz" />
+                <ScalarProperty Name="kart_aktywny" ColumnName="kart_aktywny" />
+                <ScalarProperty Name="zaw_id" ColumnName="zaw_id" />
+                <ScalarProperty Name="kart_pesel" ColumnName="kart_pesel" />
+                <ScalarProperty Name="kart_zgoda1" ColumnName="kart_zgoda1" />
+                <ScalarProperty Name="kart_zgoda2" ColumnName="kart_zgoda2" />
+                <ScalarProperty Name="kart_zgoda3" ColumnName="kart_zgoda3" />
+                <ScalarProperty Name="kart_uwagi" ColumnName="kart_uwagi" />
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="plec_id" ColumnName="plec_id" />
+                <ScalarProperty Name="kart_wiek" ColumnName="kart_wiek" />
+                <ScalarProperty Name="kart_kod1" ColumnName="kart_kod1" />
+                <ScalarProperty Name="kart_kod2" ColumnName="kart_kod2" />
+                <ScalarProperty Name="kart_data" ColumnName="kart_data" />
+                <ScalarProperty Name="kart_dataCzas" ColumnName="kart_dataCzas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kartoteka_TMP">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.kartoteka_TMP">
+              <MappingFragment StoreEntitySet="kartoteka_TMP">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="dataRej" ColumnName="dataRej" />
+                <ScalarProperty Name="limitCzasu" ColumnName="limitCzasu" />
+                <ScalarProperty Name="dataKoncowa" ColumnName="dataKoncowa" />
+                <ScalarProperty Name="rejestracja" ColumnName="rejestracja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kartoteka2">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.kartoteka2">
+              <MappingFragment StoreEntitySet="kartoteka2">
+                <ScalarProperty Name="kart_id" ColumnName="kart_id" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="kart_email" ColumnName="kart_email" />
+                <ScalarProperty Name="kart_telefon" ColumnName="kart_telefon" />
+                <ScalarProperty Name="kart_uwagi" ColumnName="kart_uwagi" />
+                <ScalarProperty Name="plec_id" ColumnName="plec_id" />
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="grup_id" ColumnName="grup_id" />
+                <ScalarProperty Name="kart_dataUr" ColumnName="kart_dataUr" />
+                <ScalarProperty Name="kart_dataRej" ColumnName="kart_dataRej" />
+                <ScalarProperty Name="kart_wpis_rejestacja" ColumnName="kart_wpis_rejestacja" />
+                <ScalarProperty Name="kart_wpis_oplata" ColumnName="kart_wpis_oplata" />
+                <ScalarProperty Name="kart_wpis_rezerwowa" ColumnName="kart_wpis_rezerwowa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plec">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.Plec">
+              <MappingFragment StoreEntitySet="Plec">
+                <ScalarProperty Name="plec_id" ColumnName="plec_id" />
+                <ScalarProperty Name="plec_opis" ColumnName="plec_opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="modelExt">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.modelExt">
+              <MappingFragment StoreEntitySet="modelExt">
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="dys_wartosc" ColumnName="dys_wartosc" />
+                <ScalarProperty Name="grupa_nazwa" ColumnName="grupa_nazwa" />
+                <ScalarProperty Name="kart_wpis_rejestacja" ColumnName="kart_wpis_rejestacja" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VmodelExt">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.VmodelExt">
+              <MappingFragment StoreEntitySet="VmodelExt">
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="dys_wartosc" ColumnName="dys_wartosc" />
+                <ScalarProperty Name="grupa_nazwa" ColumnName="grupa_nazwa" />
+                <ScalarProperty Name="kart_wpis_rejestacja" ColumnName="kart_wpis_rejestacja" />
+                <ScalarProperty Name="C1" ColumnName="C1" />
+                <ScalarProperty Name="C2" ColumnName="C2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VOneColumn">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.VOneColumn">
+              <MappingFragment StoreEntitySet="VOneColumn">
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="dane" ColumnName="dane" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pKartotekaZawodnikaDodaj" FunctionName="MaratonMszanaModel.Store.pKartotekaZawodnikaDodaj" />
+          <FunctionImportMapping FunctionImportName="pDodajGrupa" FunctionName="MaratonMszanaModel.Store.pDodajGrupa" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

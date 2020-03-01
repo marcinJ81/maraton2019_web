@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root Type="DevExpress.CodeRush.Foundation.Markers.SolutionBookmarksContainer">
+  <Options Language="Neutral">
+    <Items>
+      <Item Id="{5b92128a-cc05-4de2-adff-3604060931f5}">
+        <Id>1</Id>
+        <File>maratonMszana_v4\maratonMszana_v4\App_Start\NinjectWebCommon.cs</File>
+        <Line>75</Line>
+        <Character>72</Character>
+        <ViewportTop>54</ViewportTop>
+        <ViewportTopMax>77</ViewportTopMax>
+        <TopLine>54</TopLine>
+      </Item>
+    </Items>
+  </Options>
+</Root>

@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD3FF2E2-8305-42E9-905C-94F7AC453FBB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Abstract_And_Model_Layer</RootNamespace>
+    <AssemblyName>Abstract_And_Model_Layer</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AEmail.cs" />
+    <Compile Include="AListOfParticipants.cs" />
+    <Compile Include="AMarathonOffice.cs" />
+    <Compile Include="AParticipantRegister.cs" />
+    <Compile Include="AParticipantResult.cs" />
+    <Compile Include="ARegistration_User.cs" />
+    <Compile Include="ATestData.cs" />
+    <Compile Include="AThrowException.cs" />
+    <Compile Include="AWebInterface.cs" />
+    <Compile Include="IReport.cs" />
+    <Compile Include="Mail_message_Model\DescriptionEndMail.cs" />
+    <Compile Include="Mail_message_Model\EmailDescription.cs" />
+    <Compile Include="Marthon_Office_Model\EntitesMarathonOffice_StoredProcedures.cs" />
+    <Compile Include="Marthon_Office_Model\EntitiesMarathonOffice_true.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration_Participant_Model\Dystans.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\dystans_info.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\Exception_Table.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\ExtModelRegistrationList.cs" />
+    <Compile Include="Registration_Participant_Model\grupa_kolarska.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\kartoteka2.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\kartotekaMetaData.cs" />
+    <Compile Include="Registration_Participant_Model\kartoteka_2018.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\kartoteka_TMP.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\modelExt.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\ModelRegistrationParticipant.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationParticipant.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\ModelRegistrationParticipant.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\ModelRegistrationParticipant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationParticipant.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\Plec.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\VmodelExt.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_Participant_Model\VOneColumn.cs">
+      <DependentUpon>ModelRegistrationParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_User_Model\ModelRegistrationUser.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationUser.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_User_Model\ModelRegistrationUser.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationUser.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_User_Model\ModelRegistrationUser.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelRegistrationUser.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_User_Model\PasswordGenerator.cs" />
+    <Compile Include="Registration_User_Model\PasswordTable.cs">
+      <DependentUpon>ModelRegistrationUser.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Registration_User_Model\UserTable.cs">
+      <DependentUpon>ModelRegistrationUser.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\ModelTagTimeParticipant.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTagTimeParticipant.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\ModelTagTimeParticipant.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\ModelTagTimeParticipant.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTagTimeParticipant.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\Result.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\Start_List.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\Tag_Number.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\Time_Registration.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\viewResult\vResultList.cs" />
+    <Compile Include="Time_Tag_Participant\vResultList.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\VStartingLists.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Time_Tag_Participant\Zawodnik.cs">
+      <DependentUpon>ModelTagTimeParticipant.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="Registration_User_Model\ModelRegistrationUser.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelRegistrationUser.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Registration_Participant_Model\ModelRegistrationParticipant.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelRegistrationParticipant.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Registration_Participant_Model\ModelRegistrationParticipant.edmx.diagram">
+      <DependentUpon>ModelRegistrationParticipant.edmx</DependentUpon>
+    </None>
+    <None Include="Registration_User_Model\ModelRegistrationUser.edmx.diagram">
+      <DependentUpon>ModelRegistrationUser.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="Time_Tag_Participant\ModelTagTimeParticipant.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelTagTimeParticipant.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Time_Tag_Participant\ModelTagTimeParticipant.edmx.diagram">
+      <DependentUpon>ModelTagTimeParticipant.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Registration_Participant_Model\ModelRegistrationParticipant.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRegistrationParticipant.edmx</DependentUpon>
+      <LastGenOutput>ModelRegistrationParticipant.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Registration_Participant_Model\ModelRegistrationParticipant.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRegistrationParticipant.edmx</DependentUpon>
+      <LastGenOutput>ModelRegistrationParticipant.cs</LastGenOutput>
+    </Content>
+    <Content Include="Registration_User_Model\ModelRegistrationUser.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRegistrationUser.edmx</DependentUpon>
+      <LastGenOutput>ModelRegistrationUser.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Registration_User_Model\ModelRegistrationUser.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelRegistrationUser.edmx</DependentUpon>
+      <LastGenOutput>ModelRegistrationUser.cs</LastGenOutput>
+    </Content>
+    <Content Include="Time_Tag_Participant\ModelTagTimeParticipant.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTagTimeParticipant.edmx</DependentUpon>
+      <LastGenOutput>ModelTagTimeParticipant.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Time_Tag_Participant\ModelTagTimeParticipant.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelTagTimeParticipant.edmx</DependentUpon>
+      <LastGenOutput>ModelTagTimeParticipant.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

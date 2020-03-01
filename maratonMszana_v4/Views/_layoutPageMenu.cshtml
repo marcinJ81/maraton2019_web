@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Maraton Mszana 2019</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/moment-with-locales.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <span class="navbar-brand mb-0 h1">Maraton Mszana</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">  
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Główna
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Start", "Index", "Home", null, new { @class = "dropdown-item" })
+                        <a class="dropdown-item"  target="_blank" href="http://maraton24.hw7.pl/glowna/Trasa">Trasa</a>
+                        @Html.ActionLink("Zarządzanie", "ListOfRegistering", "RegistrationParticipant", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>            
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="http://maraton24.hw7.pl/">Historia</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Rejestracja
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Rejestracja", "Register", "Registration", null, new { @class = "dropdown-item" })
+                        @Html.ActionLink("Lista Zawodników", "RegistrationList", "RegistrationListUser", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Wyniki
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Wyniki", "ResultsList", "Participant", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Listy Startowe
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Listy", "StartingList", "Participant", null, new { @class = "dropdown-item" })
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       Lokalizacja
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" target="_blank" href="http://www.mszana.ug.gov.pl">Mszana</a>
+                        <a class="dropdown-item" target="_blank" href="https://wodzislaw-slaski.pl/">Racibórz</a>
+                        <a class="dropdown-item" target="_blank" href="https://www.raciborz.pl/">Wodzisław</a>
+                        <a class="dropdown-item" target="_blank" href="https://pl.wikipedia.org/wiki/Piotrowice_ko%C5%82o_Karwiny">Piotrowice</a>
+                        <a class="dropdown-item" target="_blank" href="https://www.jastrzebie.pl/">Jastrzębie</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" target="_blank" href="http://www.gokir-mszana.pl/">Gokir Mszana</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Kontakt
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        @Html.ActionLink("Kontakt", "Kontakt", "Home", null, new { @class = "dropdown-item" })
+                        <a class="dropdown-item" target="_blank" href="http://maraton24.hw7.pl/glowna/Oplaty">Opłaty</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+               <!-- <input class="form-control mr-sm-2" type="search" placeholder="Podaj tekst" aria-label="Szukaj">
+                <button class="btn  btn btn-outline-light my-2 my-sm-0" type="submit">Szukaj</button>-->
+            </form>
+        </div>
+    </nav>
+        @RenderBody()
+    
+</body>
+</html>

@@ -1,0 +1,175 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+
+
+<style>
+    .okno {
+    
+    border-color:black;
+    border-bottom-style:double;
+    position:absolute;
+    background-color:aqua;
+    }
+</style>
+<div class="container">
+    <h2>Witamy na stronie Śląskiego Maratonu Rowerowego Mszana</h2>
+</div>   
+
+        <div id="main" class="container">
+            <div class="jumbotron">
+                <div class="row">
+                   
+
+                    <div class="col-md-8">
+                        <p title="zapraszamy" id="pZapraszamy" style="text-align:justify; font-size:15px;">
+                            <b> Zapraszamy na kolejną edycję imprezy która odbędzie się <u> 15-16 czerwca 2019</u></b><br /><br />
+                        </p>
+                        <b>Trasy maratonu:</b>
+                        <ul>
+                            <li> <b>Dystans</b> - 50 km limit czasowy - 3 h.</li>
+                            <li> <b>Dystans</b> - 100 km limit czasowy - 5 h.</li>
+                            <li> <b>Dystans</b> - 150 km limit czasowy - 7 h i 30 min</li>
+                            <li> <b>Dystans</b> - 200 km limit czasowy - 8 h. </li>
+                            <li> <b>Dystans</b> - 300 km limit czasowy - 24 h.</li>
+                            <li> <b>Dystans</b> - 400 km limit czasowy - 24 h.</li>
+                            <li> <b>Dystans</b> - 500 km limit czasowy - 24 h.</li>
+                            <li> <b>Dystans</b> - 600 km limit czasowy - 24 h.</li>
+                            <li> <b>Dystans</b> - 700 km limit czasowy - 24 h.</li>
+                            <li> <b>Dystans</b> - 750 km limit czasowy - 24 h.</li>
+                            <li> <a href="~/Views/Home/Kontakt.cshtml" id="linkKontakt" title="Skontaktu się z nami ...">Kontakt</a></li>
+                        </ul>
+                        <b><u>Maraton Rowerowy w Mszanie nie jest formą wyścigu!</u></b><br />
+                        <span style="color:red;font-size:18px;">
+                        </span>
+
+                    </div>
+
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div id="dPatronat" class="col-md-6" title="kolumna">
+                        <p style="text-align:justify; font-size:16px;">
+                            Patronat honorowy:
+                        </p>
+                        <img src="~/logo_marszalek.jpg" id="imgLogo" title="logo" style="height:150px;width:450px;" />
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p style="text-align:justify; font-size:16px;">
+
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+
+
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+<script>
+   /* (function () {
+        var toolTip = null;
+
+        function createToolTip(text, options) {
+
+            var div = document.createElement("div");
+
+            div.textContent = text;
+            div.id = "testPanel";
+            div.className = "okno hidden";
+
+            div.style.left = options.x + "px";
+            div.style.top = options.y + "px";
+            document.body.appendChild(div);
+
+            div.classList.remove("hidden");
+            toolTip = div;
+        }
+
+
+        function showToolTip(e) {
+            var title = e.target.getAttribute("title");
+
+            e.target.removeAttribute("title");
+
+            createToolTip(title, {
+                w: e.target.offsetWidth,
+                x: e.target.offsetLeft,
+                y: e.target.offsetTop
+            });
+
+        }
+
+        function removeToolTip(e) {
+            e.target.setAttribute("title",toolTip.textContent);
+            toolTip.parentNode.removeChild(toolTip);
+        }
+
+        var title = document.querySelectorAll("[title]");
+        
+        for (var i = 0; i < title.length; i++)
+        {
+            title[i].addEventListener("mouseenter", showToolTip, false);
+            title[i].addEventListener("mouseleave", removeToolTip, false);
+        }
+       
+    })();
+
+    function dwa() {
+        var container = document.querySelector("#main");
+        container.addEventListener("click", function () {
+            console.log('klik');
+        }, false);
+    };*/
+</script>

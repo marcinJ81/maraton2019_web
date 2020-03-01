@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Abstract_And_Model_Layer.Registration_Participant_Model.ExtModelRegistrationList>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "RegistrationList";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+<style>
+    .odstep2 {
+        padding: 5px 5px 5px 5px;
+    }
+</style>
+<div class="container d-block">
+    <h2>Lista Zawodników</h2>
+    <div class="jumbotron">
+        @using (Html.BeginForm("RegistrationList", "RegistrationListUser", FormMethod.Get))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        @Html.TextBox("param1", null, htmlAttributes: new { placeholder = "np. Nazwisko imię dystans grupa ", @class = "form-control" })
+                    </div>
+                    <div class="col-md-1">
+                        <input type="submit" value="Szukaj" class="btn btn-info " />
+                    </div>
+                </div>
+            </div>
+        }
+        <br />
+        <p style="font-size:11px;">
+            Całkowita ilość wyników: @Html.Label((string)ViewBag.licznik)<br />
+            Filtr: @Html.Label((string)ViewBag.zmienne)
+        </p>
+
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Dystans
+                </th>
+                <th>
+                    Grupa
+                </th>
+                <th>
+                    Rezerwa
+                </th>
+                <th>
+                    Opłacono
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dystans)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.grupa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rezerwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.oplacony)
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        @Html.PagedListPager(Model, page => Url.Action("RegistrationList",
+        new
+        {
+            page,
+            currentFilter_param1 = ViewBag.currentFilter_param1
+        }))
+    </div>
+</div>

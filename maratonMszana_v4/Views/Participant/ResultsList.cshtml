@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Abstract_And_Model_Layer.Time_Tag_Participant.vResultList>
+
+@{
+    ViewBag.Title = "ResultsList";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+
+
+<div class="container">
+    <h3>Lista Wyników 2019</h3>
+    <div class="jumbotron">
+@using (Html.BeginForm("ResultsList", "Participant", FormMethod.Get))
+{
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    @Html.TextBox("dane", null, htmlAttributes: new { placeholder = "np. Nazwisko imię dystans  ", @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    @Html.DropDownList("dys_id", (MultiSelectList)ViewBag.dys_id, htmlAttributes: new { @class = " form-control pole_1" })
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" value="Szukaj" class="btn btn-info " />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        </div>
+}
+        <br />
+        <table class="table table-striped">
+            <tr>
+                <th class="text-hide">
+
+                </th>
+                <th>
+                  Dane zawodnika
+                </th>
+                <th>
+                    Rezultat
+                </th>
+                <th>
+                    Odbicia
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="text-hide">@Html.DisplayFor(modelItem => item.zaw_id) </div>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.suma_czas)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rzeczywistaIloscOdbic)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

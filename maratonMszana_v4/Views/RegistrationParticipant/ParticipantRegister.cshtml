@@ -1,0 +1,93 @@
+﻿@model Abstract_And_Model_Layer.Registration_Participant_Model.kartoteka2
+@{
+    ViewBag.Title = "ParticipantRegister";
+    Layout = "~/Views/_layoutPageMenu.cshtml";
+}
+<style>
+        .odstep {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .rozmiar {
+        font-size: 16px;
+    }
+
+</style>
+<h3>Lokalna rejestracja zawodnika</h3>
+<div class="container">
+    <span class="rozmiar">
+        Naciśnięcie przycisku opłata skutkuje wpisaniem informacji  o zapłacie zawodnika,
+        dodaniem  do tabeli zawodnik, połączenie z losowym numerem oraz przyłączenie do listy startowej
+    </span>
+</div>
+<div class="container">
+    <div class="jumbotron">
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-md-1">
+            @Html.ActionLink("Powrót", "ListOfRegistering", "RegistrationParticipant", null, new { @class = "btn btn-success" })
+        </div>
+        <div class="col-md-1">
+           
+        </div>
+        <div class="col-md-1">
+            <input id="btnVerificationRegister" type="submit" value="Opłata" class="btn btn-info" />
+        </div>
+    </div>
+    <div class="row odstep">
+        <div class="col-md-2">
+            Imię
+        </div>
+        <div class="col-md-3">
+            @Html.TextBox("kart_imie", !String.IsNullOrEmpty(Model.kart_imie) ? Model.kart_imie : " " , htmlAttributes: new { placeholder = "Podaj imię", @class = "form-control pole_1" })
+        </div>
+        <div class="col-md-4">
+            @Html.ValidationMessageFor(model => model.kart_imie, "", new { @class = "text-danger" })
+        </div>
+    </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Nazwisko
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_nazwisko", !String.IsNullOrEmpty(Model.kart_nazwisko) ? Model.kart_nazwisko : " " , htmlAttributes: new { placeholder = "Podaj nazwisko", @class = "form-control pole_1" })
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_nazwisko, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+                <div class="col-md-2">
+                    Email
+                </div>
+                <div class="col-md-3">
+                    @Html.TextBox("kart_email", !String.IsNullOrEmpty(Model.kart_email) ? Model.kart_email : " ", htmlAttributes: new { placeholder = "Podaj email", @class = "form-control pole_1" })
+                </div>
+                <div class="col-md-4">
+                    @Html.ValidationMessageFor(model => model.kart_imie, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row odstep">
+               
+                    <div class="col-md-2">
+                        Dystans 
+                    </div>
+                    <div class="col-md-3">
+                    @if (Model.dys_id != null)
+                    {
+                        @Html.TextBox("dys_id", Model.dys_id, htmlAttributes: new { placeholder = "Podaj imię", @class = "form-control " })
+                    }
+                    else
+                    {
+                        @Html.DropDownList("dys_id", (MultiSelectList)ViewBag.dystans, htmlAttributes: new { @class = " form-control " })
+                    }
+
+                    </div>
+                    <div class="col-md-4">
+                        @Html.ValidationMessageFor(model => model.kart_imie, "", new { @class = "text-danger" })
+                    </div>
+            </div>
+}
+    </div>
+</div>

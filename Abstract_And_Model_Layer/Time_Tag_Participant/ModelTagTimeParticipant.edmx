@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MaratonMszanaModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="result_id" />
+          </Key>
+          <Property Name="result_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="result_time" Type="time" Precision="7" />
+          <Property Name="zaw_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Start_List">
+          <Key>
+            <PropertyRef Name="list_id" />
+          </Key>
+          <Property Name="list_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="list_nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="list_iloscMaks" Type="int" />
+          <Property Name="list_ilosc" Type="int" />
+          <Property Name="list_data" Type="date" />
+          <Property Name="list_czas" Type="time" Precision="7" />
+          <Property Name="list_zamknieta" Type="bit" />
+          <Property Name="dys_id" Type="int" />
+          <Property Name="list_start" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tag_Number">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tag_IdNumber" Type="varchar" MaxLength="20" />
+          <Property Name="tag_LabelNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="Time_Registration">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time_registration" Type="datetime" />
+          <Property Name="zaw_id" Type="int" />
+          <Property Name="time_counter" Type="int" />
+        </EntityType>
+        <EntityType Name="Zawodnik">
+          <Key>
+            <PropertyRef Name="zaw_id" />
+          </Key>
+          <Property Name="zaw_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="zaw_aktywny" Type="bit" />
+          <Property Name="kartoteka_id" Type="int" />
+          <Property Name="list_id" Type="int" />
+          <Property Name="tag_id" Type="int" />
+          <Property Name="time_id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '1208_MaratonMszana.participant.vResultList' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vResultList">
+          <Key>
+            <PropertyRef Name="kart_id" />
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="tag_id" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="zaw_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="rzeczywistaIloscOdbic" />
+          </Key>
+          <Property Name="kart_id" Type="int" Nullable="false" />
+          <Property Name="dys_id" Type="int" Nullable="false" />
+          <Property Name="tag_id" Type="int" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zaw_id" Type="int" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dys_wartosc" Type="varchar" MaxLength="50" />
+          <Property Name="dane" Type="varchar" MaxLength="183" />
+          <Property Name="suma_czas" Type="varchar" MaxLength="8" />
+          <Property Name="sum_seconds" Type="int" />
+          <Property Name="rzeczywistaIloscOdbic" Type="int" Nullable="false" />
+          <Property Name="tag_LabelNumber" Type="int" />
+          <Property Name="iloscOdbic" Type="int" />
+          <Property Name="realDistance" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view '1208_MaratonMszana.participant.VStartingLists' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VStartingLists">
+          <Key>
+            <PropertyRef Name="list_id" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="kart_imie" />
+          </Key>
+          <Property Name="Id" Type="bigint" />
+          <Property Name="list_nazwa" Type="varchar" MaxLength="50" />
+          <Property Name="list_data" Type="date" />
+          <Property Name="list_czas" Type="time" Precision="7" />
+          <Property Name="list_ilosc" Type="int" />
+          <Property Name="list_id" Type="int" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kart_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tag_LabelNumber" Type="int" />
+          <Property Name="dys_wartosc" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Result_Zawodnik">
+          <End Role="Zawodnik" Type="Self.Zawodnik" Multiplicity="0..1" />
+          <End Role="Result" Type="Self.Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zawodnik">
+              <PropertyRef Name="zaw_id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="zaw_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Registration_Zawodnik">
+          <End Role="Zawodnik" Type="Self.Zawodnik" Multiplicity="0..1" />
+          <End Role="Time_Registration" Type="Self.Time_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zawodnik">
+              <PropertyRef Name="zaw_id" />
+            </Principal>
+            <Dependent Role="Time_Registration">
+              <PropertyRef Name="zaw_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zawodnik_Start_List">
+          <End Role="Start_List" Type="Self.Start_List" Multiplicity="0..1" />
+          <End Role="Zawodnik" Type="Self.Zawodnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Start_List">
+              <PropertyRef Name="list_id" />
+            </Principal>
+            <Dependent Role="Zawodnik">
+              <PropertyRef Name="list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zawodnik_Tag_Number">
+          <End Role="Tag_Number" Type="Self.Tag_Number" Multiplicity="0..1" />
+          <End Role="Zawodnik" Type="Self.Zawodnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag_Number">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="Zawodnik">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fTimeSegment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="participant" ReturnType="varchar">
+          <Parameter Name="czas1" Type="datetime" Mode="In" />
+          <Parameter Name="czas2" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="RegistrationTimeAndCheck" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="participant">
+          <Parameter Name="zaw_id" Type="int" Mode="In" />
+          <Parameter Name="rejestracja" Type="datetime" Mode="In" />
+        </Function>
+        <EntityContainer Name="MaratonMszanaModel1StoreContainer">
+          <EntitySet Name="Result" EntityType="Self.Result" Schema="participant" store:Type="Tables" />
+          <EntitySet Name="Start_List" EntityType="Self.Start_List" Schema="participant" store:Type="Tables" />
+          <EntitySet Name="Tag_Number" EntityType="Self.Tag_Number" Schema="participant" store:Type="Tables" />
+          <EntitySet Name="Time_Registration" EntityType="Self.Time_Registration" Schema="participant" store:Type="Tables" />
+          <EntitySet Name="Zawodnik" EntityType="Self.Zawodnik" Schema="participant" store:Type="Tables" />
+          <EntitySet Name="vResultList" EntityType="Self.vResultList" store:Type="Views" store:Schema="participant">
+            <DefiningQuery>SELECT 
+    [vResultList].[kart_id] AS [kart_id], 
+    [vResultList].[dys_id] AS [dys_id], 
+    [vResultList].[tag_id] AS [tag_id], 
+    [vResultList].[kart_nazwisko] AS [kart_nazwisko], 
+    [vResultList].[zaw_id] AS [zaw_id], 
+    [vResultList].[kart_imie] AS [kart_imie], 
+    [vResultList].[dys_wartosc] AS [dys_wartosc], 
+    [vResultList].[dane] AS [dane], 
+    [vResultList].[suma_czas] AS [suma_czas], 
+    [vResultList].[sum_seconds] AS [sum_seconds], 
+    [vResultList].[rzeczywistaIloscOdbic] AS [rzeczywistaIloscOdbic], 
+    [vResultList].[tag_LabelNumber] AS [tag_LabelNumber], 
+    [vResultList].[iloscOdbic] AS [iloscOdbic], 
+    [vResultList].[realDistance] AS [realDistance]
+    FROM [participant].[vResultList] AS [vResultList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VStartingLists" EntityType="Self.VStartingLists" store:Type="Views" store:Schema="participant">
+            <DefiningQuery>SELECT 
+    [VStartingLists].[Id] AS [Id], 
+    [VStartingLists].[list_nazwa] AS [list_nazwa], 
+    [VStartingLists].[list_data] AS [list_data], 
+    [VStartingLists].[list_czas] AS [list_czas], 
+    [VStartingLists].[list_ilosc] AS [list_ilosc], 
+    [VStartingLists].[list_id] AS [list_id], 
+    [VStartingLists].[kart_nazwisko] AS [kart_nazwisko], 
+    [VStartingLists].[kart_imie] AS [kart_imie], 
+    [VStartingLists].[tag_LabelNumber] AS [tag_LabelNumber], 
+    [VStartingLists].[dys_wartosc] AS [dys_wartosc]
+    FROM [participant].[VStartingLists] AS [VStartingLists]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Result_Zawodnik" Association="Self.FK_Result_Zawodnik">
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_Registration_Zawodnik" Association="Self.FK_Time_Registration_Zawodnik">
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+            <End Role="Time_Registration" EntitySet="Time_Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zawodnik_Start_List" Association="Self.FK_Zawodnik_Start_List">
+            <End Role="Start_List" EntitySet="Start_List" />
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zawodnik_Tag_Number" Association="Self.FK_Zawodnik_Tag_Number">
+            <End Role="Tag_Number" EntitySet="Tag_Number" />
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaratonMszanaModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="result_id" />
+          </Key>
+          <Property Name="result_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="result_time" Type="Time" Precision="7" />
+          <Property Name="zaw_id" Type="Int32" />
+          <NavigationProperty Name="Zawodnik" Relationship="MaratonMszanaModel1.FK_Result_Zawodnik" FromRole="Result" ToRole="Zawodnik" />
+          <Property Name="result_info" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Start_List">
+          <Key>
+            <PropertyRef Name="list_id" />
+          </Key>
+          <Property Name="list_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="list_nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="list_iloscMaks" Type="Int32" />
+          <Property Name="list_ilosc" Type="Int32" />
+          <Property Name="list_data" Type="DateTime" Precision="0" />
+          <Property Name="list_czas" Type="Time" Precision="7" />
+          <Property Name="list_zamknieta" Type="Boolean" />
+          <Property Name="dys_id" Type="Int32" />
+          <Property Name="list_start" Type="Boolean" />
+          <NavigationProperty Name="Zawodnik" Relationship="MaratonMszanaModel1.FK_Zawodnik_Start_List" FromRole="Start_List" ToRole="Zawodnik" />
+        </EntityType>
+        <EntityType Name="Tag_Number">
+          <Key>
+            <PropertyRef Name="tag_id" />
+          </Key>
+          <Property Name="tag_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tag_IdNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tag_LabelNumber" Type="Int32" />
+          <NavigationProperty Name="Zawodnik" Relationship="MaratonMszanaModel1.FK_Zawodnik_Tag_Number" FromRole="Tag_Number" ToRole="Zawodnik" />
+        </EntityType>
+        <EntityType Name="Time_Registration">
+          <Key>
+            <PropertyRef Name="time_id" />
+          </Key>
+          <Property Name="time_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time_registration1" Type="DateTime" Precision="3" />
+          <Property Name="zaw_id" Type="Int32" />
+          <Property Name="time_counter" Type="Int32" />
+          <NavigationProperty Name="Zawodnik" Relationship="MaratonMszanaModel1.FK_Time_Registration_Zawodnik" FromRole="Time_Registration" ToRole="Zawodnik" />
+        </EntityType>
+        <EntityContainer Name="EntitiesTagTime" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Result" EntityType="Self.Result" />
+          <EntitySet Name="Start_List" EntityType="Self.Start_List" />
+          <EntitySet Name="Tag_Number" EntityType="Self.Tag_Number" />
+          <EntitySet Name="Time_Registration" EntityType="Self.Time_Registration" />
+          <EntitySet Name="VStartingLists" EntityType="MaratonMszanaModel1.VStartingLists" />
+          <EntitySet Name="Zawodnik" EntityType="MaratonMszanaModel1.Zawodnik" />
+          <AssociationSet Name="FK_Result_Zawodnik" Association="MaratonMszanaModel1.FK_Result_Zawodnik">
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+            <End Role="Result" EntitySet="Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zawodnik_Start_List" Association="MaratonMszanaModel1.FK_Zawodnik_Start_List">
+            <End Role="Start_List" EntitySet="Start_List" />
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zawodnik_Tag_Number" Association="MaratonMszanaModel1.FK_Zawodnik_Tag_Number">
+            <End Role="Tag_Number" EntitySet="Tag_Number" />
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Time_Registration_Zawodnik" Association="MaratonMszanaModel1.FK_Time_Registration_Zawodnik">
+            <End Role="Zawodnik" EntitySet="Zawodnik" />
+            <End Role="Time_Registration" EntitySet="Time_Registration" />
+          </AssociationSet>
+          <EntitySet Name="vResultList" EntityType="MaratonMszanaModel1.vResultList" />
+        </EntityContainer>
+        <EntityType Name="VStartingLists">
+          <Key>
+            <PropertyRef Name="list_id" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="kart_imie" />
+          </Key>
+          <Property Name="Id" Type="Int64" />
+          <Property Name="list_nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="list_data" Type="DateTime" Precision="0" />
+          <Property Name="list_czas" Type="Time" Precision="7" />
+          <Property Name="list_ilosc" Type="Int32" />
+          <Property Name="list_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kart_imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tag_LabelNumber" Type="Int32" />
+          <Property Name="dys_wartosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Zawodnik">
+          <Key>
+            <PropertyRef Name="zaw_id" />
+          </Key>
+          <Property Name="zaw_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="zaw_aktywny" Type="Boolean" />
+          <Property Name="kartoteka_id" Type="Int32" />
+          <Property Name="list_id" Type="Int32" />
+          <Property Name="tag_id" Type="Int32" />
+          <NavigationProperty Name="Result" Relationship="MaratonMszanaModel1.FK_Result_Zawodnik" FromRole="Zawodnik" ToRole="Result" />
+          <NavigationProperty Name="Start_List" Relationship="MaratonMszanaModel1.FK_Zawodnik_Start_List" FromRole="Zawodnik" ToRole="Start_List" />
+          <NavigationProperty Name="Tag_Number" Relationship="MaratonMszanaModel1.FK_Zawodnik_Tag_Number" FromRole="Zawodnik" ToRole="Tag_Number" />
+          <NavigationProperty Name="Time_Registration" Relationship="MaratonMszanaModel1.FK_Time_Registration_Zawodnik" FromRole="Zawodnik" ToRole="Time_Registration" />
+          <Property Name="time_id" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Result_Zawodnik">
+          <End Type="MaratonMszanaModel1.Zawodnik" Role="Zawodnik" Multiplicity="0..1" />
+          <End Type="MaratonMszanaModel1.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zawodnik">
+              <PropertyRef Name="zaw_id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="zaw_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zawodnik_Start_List">
+          <End Type="MaratonMszanaModel1.Start_List" Role="Start_List" Multiplicity="0..1" />
+          <End Type="MaratonMszanaModel1.Zawodnik" Role="Zawodnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Start_List">
+              <PropertyRef Name="list_id" />
+            </Principal>
+            <Dependent Role="Zawodnik">
+              <PropertyRef Name="list_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zawodnik_Tag_Number">
+          <End Type="MaratonMszanaModel1.Tag_Number" Role="Tag_Number" Multiplicity="0..1" />
+          <End Type="MaratonMszanaModel1.Zawodnik" Role="Zawodnik" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag_Number">
+              <PropertyRef Name="tag_id" />
+            </Principal>
+            <Dependent Role="Zawodnik">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Time_Registration_Zawodnik">
+          <End Type="MaratonMszanaModel1.Zawodnik" Role="Zawodnik" Multiplicity="0..1" />
+          <End Type="MaratonMszanaModel1.Time_Registration" Role="Time_Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zawodnik">
+              <PropertyRef Name="zaw_id" />
+            </Principal>
+            <Dependent Role="Time_Registration">
+              <PropertyRef Name="zaw_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vResultList">
+          <Key>
+            <PropertyRef Name="kart_id" />
+            <PropertyRef Name="dys_id" />
+            <PropertyRef Name="tag_id" />
+            <PropertyRef Name="kart_nazwisko" />
+            <PropertyRef Name="zaw_id" />
+            <PropertyRef Name="kart_imie" />
+            <PropertyRef Name="rzeczywistaIloscOdbic" />
+          </Key>
+          <Property Name="kart_id" Type="Int32" Nullable="false" />
+          <Property Name="dys_id" Type="Int32" Nullable="false" />
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_nazwisko" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="zaw_id" Type="Int32" Nullable="false" />
+          <Property Name="kart_imie" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dys_wartosc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dane" Type="String" MaxLength="183" FixedLength="false" Unicode="false" />
+          <Property Name="suma_czas" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="sum_seconds" Type="Int32" />
+          <Property Name="rzeczywistaIloscOdbic" Type="Int32" Nullable="false" />
+          <Property Name="tag_LabelNumber" Type="Int32" />
+          <Property Name="iloscOdbic" Type="Int32" />
+          <Property Name="realDistance" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaratonMszanaModel1StoreContainer" CdmEntityContainer="EntitiesTagTime">
+          <EntitySetMapping Name="Result">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.Result">
+              <MappingFragment StoreEntitySet="Result">
+                <ScalarProperty Name="result_id" ColumnName="result_id" />
+                <ScalarProperty Name="result_time" ColumnName="result_time" />
+                <ScalarProperty Name="zaw_id" ColumnName="zaw_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Start_List">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.Start_List">
+              <MappingFragment StoreEntitySet="Start_List">
+                <ScalarProperty Name="list_id" ColumnName="list_id" />
+                <ScalarProperty Name="list_nazwa" ColumnName="list_nazwa" />
+                <ScalarProperty Name="list_iloscMaks" ColumnName="list_iloscMaks" />
+                <ScalarProperty Name="list_ilosc" ColumnName="list_ilosc" />
+                <ScalarProperty Name="list_data" ColumnName="list_data" />
+                <ScalarProperty Name="list_czas" ColumnName="list_czas" />
+                <ScalarProperty Name="list_zamknieta" ColumnName="list_zamknieta" />
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="list_start" ColumnName="list_start" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag_Number">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.Tag_Number">
+              <MappingFragment StoreEntitySet="Tag_Number">
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="tag_IdNumber" ColumnName="tag_IdNumber" />
+                <ScalarProperty Name="tag_LabelNumber" ColumnName="tag_LabelNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Time_Registration">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.Time_Registration">
+              <MappingFragment StoreEntitySet="Time_Registration">
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="time_registration1" ColumnName="time_registration" />
+                <ScalarProperty Name="zaw_id" ColumnName="zaw_id" />
+                <ScalarProperty Name="time_counter" ColumnName="time_counter" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VStartingLists">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.VStartingLists">
+              <MappingFragment StoreEntitySet="VStartingLists">
+                <ScalarProperty Name="dys_wartosc" ColumnName="dys_wartosc" />
+                <ScalarProperty Name="tag_LabelNumber" ColumnName="tag_LabelNumber" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="list_id" ColumnName="list_id" />
+                <ScalarProperty Name="list_ilosc" ColumnName="list_ilosc" />
+                <ScalarProperty Name="list_czas" ColumnName="list_czas" />
+                <ScalarProperty Name="list_data" ColumnName="list_data" />
+                <ScalarProperty Name="list_nazwa" ColumnName="list_nazwa" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zawodnik">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.Zawodnik">
+              <MappingFragment StoreEntitySet="Zawodnik">
+                <ScalarProperty Name="time_id" ColumnName="time_id" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="list_id" ColumnName="list_id" />
+                <ScalarProperty Name="kartoteka_id" ColumnName="kartoteka_id" />
+                <ScalarProperty Name="zaw_aktywny" ColumnName="zaw_aktywny" />
+                <ScalarProperty Name="zaw_id" ColumnName="zaw_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vResultList">
+            <EntityTypeMapping TypeName="MaratonMszanaModel1.vResultList">
+              <MappingFragment StoreEntitySet="vResultList">
+                <ScalarProperty Name="realDistance" ColumnName="realDistance" />
+                <ScalarProperty Name="iloscOdbic" ColumnName="iloscOdbic" />
+                <ScalarProperty Name="tag_LabelNumber" ColumnName="tag_LabelNumber" />
+                <ScalarProperty Name="rzeczywistaIloscOdbic" ColumnName="rzeczywistaIloscOdbic" />
+                <ScalarProperty Name="sum_seconds" ColumnName="sum_seconds" />
+                <ScalarProperty Name="suma_czas" ColumnName="suma_czas" />
+                <ScalarProperty Name="dane" ColumnName="dane" />
+                <ScalarProperty Name="dys_wartosc" ColumnName="dys_wartosc" />
+                <ScalarProperty Name="kart_imie" ColumnName="kart_imie" />
+                <ScalarProperty Name="zaw_id" ColumnName="zaw_id" />
+                <ScalarProperty Name="kart_nazwisko" ColumnName="kart_nazwisko" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="dys_id" ColumnName="dys_id" />
+                <ScalarProperty Name="kart_id" ColumnName="kart_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

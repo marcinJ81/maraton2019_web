@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MaratonMszanaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PasswordTable">
+          <Key>
+            <PropertyRef Name="pass_id" />
+          </Key>
+          <Property Name="pass_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pass_haslo" Type="varchar" MaxLength="300" />
+          <Property Name="pass_data" Type="datetime" />
+          <Property Name="pass_haslo2" Type="varchar" MaxLength="300" />
+          <Property Name="pass_aktywny" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="usesr_id" />
+          </Key>
+          <Property Name="usesr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_rejestracja" Type="datetime" Nullable="false" />
+          <Property Name="user_aktywny" Type="bit" Nullable="false" />
+          <Property Name="pass_id" Type="int" />
+        </EntityType>
+        <Association Name="FK_haslo">
+          <End Role="PasswordTable" Type="Self.PasswordTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PasswordTable">
+              <PropertyRef Name="pass_id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pass_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MaratonMszanaModelStoreContainer">
+          <EntitySet Name="PasswordTable" EntityType="Self.PasswordTable" Schema="register" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="register" store:Type="Tables" />
+          <AssociationSet Name="FK_haslo" Association="Self.FK_haslo">
+            <End Role="PasswordTable" EntitySet="PasswordTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MaratonMszanaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PasswordTable">
+          <Key>
+            <PropertyRef Name="pass_id" />
+          </Key>
+          <Property Name="pass_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pass_haslo" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="pass_data" Type="DateTime" Precision="3" />
+          <Property Name="pass_haslo2" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="pass_aktywny" Type="Boolean" />
+          <NavigationProperty Name="UserTable" Relationship="Self.FK_haslo" FromRole="PasswordTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="usesr_id" />
+          </Key>
+          <Property Name="usesr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_rejestracja" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_aktywny" Type="Boolean" Nullable="false" />
+          <Property Name="pass_id" Type="Int32" />
+          <NavigationProperty Name="PasswordTable" Relationship="Self.FK_haslo" FromRole="UserTable" ToRole="PasswordTable" />
+        </EntityType>
+        <Association Name="FK_haslo">
+          <End Role="PasswordTable" Type="Self.PasswordTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PasswordTable">
+              <PropertyRef Name="pass_id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="pass_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EntitiesRegistrationUser" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PasswordTable" EntityType="Self.PasswordTable" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
+          <AssociationSet Name="FK_haslo" Association="Self.FK_haslo">
+            <End Role="PasswordTable" EntitySet="PasswordTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MaratonMszanaModelStoreContainer" CdmEntityContainer="EntitiesRegistrationUser">
+          <EntitySetMapping Name="PasswordTable">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.PasswordTable">
+              <MappingFragment StoreEntitySet="PasswordTable">
+                <ScalarProperty Name="pass_id" ColumnName="pass_id" />
+                <ScalarProperty Name="pass_haslo" ColumnName="pass_haslo" />
+                <ScalarProperty Name="pass_data" ColumnName="pass_data" />
+                <ScalarProperty Name="pass_haslo2" ColumnName="pass_haslo2" />
+                <ScalarProperty Name="pass_aktywny" ColumnName="pass_aktywny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="MaratonMszanaModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="usesr_id" ColumnName="usesr_id" />
+                <ScalarProperty Name="user_login" ColumnName="user_login" />
+                <ScalarProperty Name="user_imie" ColumnName="user_imie" />
+                <ScalarProperty Name="user_nazwisko" ColumnName="user_nazwisko" />
+                <ScalarProperty Name="user_rejestracja" ColumnName="user_rejestracja" />
+                <ScalarProperty Name="user_aktywny" ColumnName="user_aktywny" />
+                <ScalarProperty Name="pass_id" ColumnName="pass_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,31 @@
+﻿ .marginesy {
+        margin-left:10%;
+        margin-right:10%;
+        margin-bottom:2%;
+        margin-top:2%;
+    }
+    .obramowanie
+    {
+        padding: 20px;
+        border-radius:10px;
+        box-shadow: 5px 5px 5px #aaa;
+        border: 1px solid #ddd;
+    }
+    .card 
+    {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 35%;
+    padding: 5px 35px;
+    font-family:Verdana;
+    font-size:14px;
+     border-radius:10px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
